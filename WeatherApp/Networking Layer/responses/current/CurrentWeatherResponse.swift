@@ -8,7 +8,7 @@
 import Foundation
 
 struct CurrentWeatherResponse: Codable {
-    let code: Int
+    let cod: Int
     let base: String
     let visibility: Int
     let dt: Int
@@ -18,23 +18,7 @@ struct CurrentWeatherResponse: Codable {
     let coord: CoordCurrentResponse
     let weather: [WeatherCurrentResponse]
     let main: MainCurrentResponse
-//    let wind: WindCurrentResponse
-//    let clouds: CloudsCurrentResponse
+    let wind: WindCurrentResponse
+    let clouds: CloudsCurrentResponse
     let sys: SysCurrentResponse
-    
-    enum CodingKeys: String, CodingKey {
-        case code
-        case base
-        case visibility
-        case dt
-        case timezone
-        case id
-        case name
-        case coord
-        case weather
-        case main
-//        case wind
-//        case clouds
-        case sys
-    }
 }

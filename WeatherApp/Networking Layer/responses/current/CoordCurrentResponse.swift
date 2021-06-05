@@ -10,9 +10,4 @@ import Foundation
 struct CoordCurrentResponse: Codable {
     let lon: Int
     let lat: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case lon
-        case lat
-    }
 }

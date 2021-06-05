@@ -7,14 +7,8 @@
 
 import Foundation
 
-struct WindCurrentResponse {
+struct WindCurrentResponse: Codable {
     let speed: Double
     let deg: Double
     let gust: Double
-    
-    enum CodingKeys: String, CodingKey {
-        case speed
-        case deg
-        case gust
-    }
 }

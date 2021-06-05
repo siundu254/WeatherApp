@@ -7,10 +7,6 @@
 
 import Foundation
 
-struct CloudsCurrentResponse {
+struct CloudsCurrentResponse: Codable {
     let all: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case all
-    }
 }

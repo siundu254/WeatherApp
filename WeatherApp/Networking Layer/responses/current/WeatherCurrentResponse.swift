@@ -13,11 +13,4 @@ struct WeatherCurrentResponse: Codable {
     let description: String
     let icon: String
     
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case main
-        case description
-        case icon
-    }
-    
 }

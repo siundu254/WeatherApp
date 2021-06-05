@@ -26,6 +26,8 @@
 		CE23C439266BA31A00FF8E6E /* WeatherCurrentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C438266BA31A00FF8E6E /* WeatherCurrentResponse.swift */; };
 		CE23C43E266BA33F00FF8E6E /* WindCurrentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C43D266BA33F00FF8E6E /* WindCurrentResponse.swift */; };
 		CE23C443266BA36300FF8E6E /* CurrentWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C442266BA36300FF8E6E /* CurrentWeatherResponse.swift */; };
+		CE23C448266BA3C700FF8E6E /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C447266BA3C700FF8E6E /* NetworkClient.swift */; };
+		CE23C44F266BA4E000FF8E6E /* WeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C44E266BA4E000FF8E6E /* WeatherRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		CE23C438266BA31A00FF8E6E /* WeatherCurrentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCurrentResponse.swift; sourceTree = "<group>"; };
 		CE23C43D266BA33F00FF8E6E /* WindCurrentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindCurrentResponse.swift; sourceTree = "<group>"; };
 		CE23C442266BA36300FF8E6E /* CurrentWeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherResponse.swift; sourceTree = "<group>"; };
+		CE23C447266BA3C700FF8E6E /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		CE23C44E266BA4E000FF8E6E /* WeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRepository.swift; sourceTree = "<group>"; };
 		D6067397CF967266A1E942F1 /* Pods-WeatherApp-WeatherAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApp-WeatherAppUITests/Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDCFA260EB491AF91043554D /* Pods_WeatherApp_WeatherAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp_WeatherAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE401A90C9C9F62955F7CE2C /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +159,7 @@
 		CE23C3DE266B9F3500FF8E6E /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				CE23C44C266BA4B900FF8E6E /* Common */,
 				CE23C41C266BA0DA00FF8E6E /* Networking Layer */,
 				CE23C41B266BA0B300FF8E6E /* Supporting Files */,
 				CE23C3E3266B9F3500FF8E6E /* ViewController.swift */,
@@ -198,6 +203,7 @@
 			children = (
 				CE23C422266BA25200FF8E6E /* responses */,
 				CE23C41D266BA0F600FF8E6E /* EndpointPlugin.swift */,
+				CE23C447266BA3C700FF8E6E /* NetworkClient.swift */,
 			);
 			path = "Networking Layer";
 			sourceTree = "<group>";
@@ -222,6 +228,22 @@
 				CE23C442266BA36300FF8E6E /* CurrentWeatherResponse.swift */,
 			);
 			path = current;
+			sourceTree = "<group>";
+		};
+		CE23C44C266BA4B900FF8E6E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CE23C44D266BA4CE00FF8E6E /* singletons */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		CE23C44D266BA4CE00FF8E6E /* singletons */ = {
+			isa = PBXGroup;
+			children = (
+				CE23C44E266BA4E000FF8E6E /* WeatherRepository.swift */,
+			);
+			path = singletons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,6 +448,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE23C44F266BA4E000FF8E6E /* WeatherRepository.swift in Sources */,
 				CE23C42A266BA2AD00FF8E6E /* CoordCurrentResponse.swift in Sources */,
 				CE23C42F266BA2D100FF8E6E /* MainCurrentResponse.swift in Sources */,
 				CE23C425266BA28B00FF8E6E /* CloudsCurrentResponse.swift in Sources */,
@@ -437,6 +460,7 @@
 				CE23C443266BA36300FF8E6E /* CurrentWeatherResponse.swift in Sources */,
 				CE23C43E266BA33F00FF8E6E /* WindCurrentResponse.swift in Sources */,
 				CE23C41E266BA0F600FF8E6E /* EndpointPlugin.swift in Sources */,
+				CE23C448266BA3C700FF8E6E /* NetworkClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

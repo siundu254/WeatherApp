@@ -16,7 +16,7 @@ extension EndpointPlugin {
     var url: URL {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = ""
+        components.host = "api.openweathermap.org/data"
         components.path = "/" + path
         components.queryItems = queryItems
         
@@ -35,7 +35,9 @@ extension EndpointPlugin {
 extension EndpointPlugin {
     
     static var baseURL: Self {
-        return EndpointPlugin(path: "")
+        let defaults = UserDefaults.standard
+        let path = "/2.5/weather?lat=\(defaults.object(forKey: "latitude") ?? "35")&lon=\(defaults.object(forKey: "longtitude") ?? "139")&appid=b0592d72052843dffd9aab55423a04a0"
+        return EndpointPlugin(path: path)
     }
     
     static var currentWeather: Self {
