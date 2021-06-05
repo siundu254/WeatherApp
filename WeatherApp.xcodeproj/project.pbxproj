@@ -19,15 +19,13 @@
 		CE23C3F7266B9F3F00FF8E6E /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C3F6266B9F3F00FF8E6E /* WeatherAppTests.swift */; };
 		CE23C402266B9F3F00FF8E6E /* WeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C401266B9F3F00FF8E6E /* WeatherAppUITests.swift */; };
 		CE23C41E266BA0F600FF8E6E /* EndpointPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C41D266BA0F600FF8E6E /* EndpointPlugin.swift */; };
-		CE23C425266BA28B00FF8E6E /* CloudsCurrentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C424266BA28B00FF8E6E /* CloudsCurrentResponse.swift */; };
-		CE23C42A266BA2AD00FF8E6E /* CoordCurrentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C429266BA2AD00FF8E6E /* CoordCurrentResponse.swift */; };
 		CE23C42F266BA2D100FF8E6E /* MainCurrentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C42E266BA2D100FF8E6E /* MainCurrentResponse.swift */; };
-		CE23C434266BA2EF00FF8E6E /* SysCurrentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C433266BA2EF00FF8E6E /* SysCurrentResponse.swift */; };
 		CE23C439266BA31A00FF8E6E /* WeatherCurrentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C438266BA31A00FF8E6E /* WeatherCurrentResponse.swift */; };
-		CE23C43E266BA33F00FF8E6E /* WindCurrentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C43D266BA33F00FF8E6E /* WindCurrentResponse.swift */; };
 		CE23C443266BA36300FF8E6E /* CurrentWeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C442266BA36300FF8E6E /* CurrentWeatherResponse.swift */; };
 		CE23C448266BA3C700FF8E6E /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C447266BA3C700FF8E6E /* NetworkClient.swift */; };
 		CE23C44F266BA4E000FF8E6E /* WeatherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE23C44E266BA4E000FF8E6E /* WeatherRepository.swift */; };
+		CE407F58266BF00100E71449 /* ForecastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE407F57266BF00100E71449 /* ForecastResponse.swift */; };
+		CE407F5D266BF02800E71449 /* ForecastListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE407F5C266BF02800E71449 /* ForecastListResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,15 +64,13 @@
 		CE23C401266B9F3F00FF8E6E /* WeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppUITests.swift; sourceTree = "<group>"; };
 		CE23C403266B9F3F00FF8E6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE23C41D266BA0F600FF8E6E /* EndpointPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointPlugin.swift; sourceTree = "<group>"; };
-		CE23C424266BA28B00FF8E6E /* CloudsCurrentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsCurrentResponse.swift; sourceTree = "<group>"; };
-		CE23C429266BA2AD00FF8E6E /* CoordCurrentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordCurrentResponse.swift; sourceTree = "<group>"; };
 		CE23C42E266BA2D100FF8E6E /* MainCurrentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCurrentResponse.swift; sourceTree = "<group>"; };
-		CE23C433266BA2EF00FF8E6E /* SysCurrentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SysCurrentResponse.swift; sourceTree = "<group>"; };
 		CE23C438266BA31A00FF8E6E /* WeatherCurrentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCurrentResponse.swift; sourceTree = "<group>"; };
-		CE23C43D266BA33F00FF8E6E /* WindCurrentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindCurrentResponse.swift; sourceTree = "<group>"; };
 		CE23C442266BA36300FF8E6E /* CurrentWeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherResponse.swift; sourceTree = "<group>"; };
 		CE23C447266BA3C700FF8E6E /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		CE23C44E266BA4E000FF8E6E /* WeatherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRepository.swift; sourceTree = "<group>"; };
+		CE407F57266BF00100E71449 /* ForecastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastResponse.swift; sourceTree = "<group>"; };
+		CE407F5C266BF02800E71449 /* ForecastListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastListResponse.swift; sourceTree = "<group>"; };
 		D6067397CF967266A1E942F1 /* Pods-WeatherApp-WeatherAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApp-WeatherAppUITests/Pods-WeatherApp-WeatherAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDCFA260EB491AF91043554D /* Pods_WeatherApp_WeatherAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp_WeatherAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE401A90C9C9F62955F7CE2C /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +207,7 @@
 		CE23C422266BA25200FF8E6E /* responses */ = {
 			isa = PBXGroup;
 			children = (
+				CE407F56266BEFD500E71449 /* forecast5 */,
 				CE23C423266BA27B00FF8E6E /* current */,
 			);
 			path = responses;
@@ -219,12 +216,8 @@
 		CE23C423266BA27B00FF8E6E /* current */ = {
 			isa = PBXGroup;
 			children = (
-				CE23C424266BA28B00FF8E6E /* CloudsCurrentResponse.swift */,
-				CE23C429266BA2AD00FF8E6E /* CoordCurrentResponse.swift */,
 				CE23C42E266BA2D100FF8E6E /* MainCurrentResponse.swift */,
-				CE23C433266BA2EF00FF8E6E /* SysCurrentResponse.swift */,
 				CE23C438266BA31A00FF8E6E /* WeatherCurrentResponse.swift */,
-				CE23C43D266BA33F00FF8E6E /* WindCurrentResponse.swift */,
 				CE23C442266BA36300FF8E6E /* CurrentWeatherResponse.swift */,
 			);
 			path = current;
@@ -244,6 +237,15 @@
 				CE23C44E266BA4E000FF8E6E /* WeatherRepository.swift */,
 			);
 			path = singletons;
+			sourceTree = "<group>";
+		};
+		CE407F56266BEFD500E71449 /* forecast5 */ = {
+			isa = PBXGroup;
+			children = (
+				CE407F57266BF00100E71449 /* ForecastResponse.swift */,
+				CE407F5C266BF02800E71449 /* ForecastListResponse.swift */,
+			);
+			path = forecast5;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,16 +451,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE23C44F266BA4E000FF8E6E /* WeatherRepository.swift in Sources */,
-				CE23C42A266BA2AD00FF8E6E /* CoordCurrentResponse.swift in Sources */,
 				CE23C42F266BA2D100FF8E6E /* MainCurrentResponse.swift in Sources */,
-				CE23C425266BA28B00FF8E6E /* CloudsCurrentResponse.swift in Sources */,
+				CE407F5D266BF02800E71449 /* ForecastListResponse.swift in Sources */,
 				CE23C3E4266B9F3500FF8E6E /* ViewController.swift in Sources */,
-				CE23C434266BA2EF00FF8E6E /* SysCurrentResponse.swift in Sources */,
+				CE407F58266BF00100E71449 /* ForecastResponse.swift in Sources */,
 				CE23C3E0266B9F3500FF8E6E /* AppDelegate.swift in Sources */,
 				CE23C3E2266B9F3500FF8E6E /* SceneDelegate.swift in Sources */,
 				CE23C439266BA31A00FF8E6E /* WeatherCurrentResponse.swift in Sources */,
 				CE23C443266BA36300FF8E6E /* CurrentWeatherResponse.swift in Sources */,
-				CE23C43E266BA33F00FF8E6E /* WindCurrentResponse.swift in Sources */,
 				CE23C41E266BA0F600FF8E6E /* EndpointPlugin.swift in Sources */,
 				CE23C448266BA3C700FF8E6E /* NetworkClient.swift in Sources */,
 			);
@@ -638,6 +638,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZAH3M7CM5P;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -657,6 +658,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZAH3M7CM5P;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -12,6 +12,7 @@ protocol WeatherRepositoryProtocol: class {
     var networkClient: NetworkClient { get }
     
     func getCurrentWeather() -> AnyPublisher<CurrentWeatherResponse, Error>
+    func getForecastFive() -> AnyPublisher<ForecastResponse, Error>
 }
 
 final class WeatherRepository: WeatherRepositoryProtocol {
@@ -23,10 +24,17 @@ final class WeatherRepository: WeatherRepositoryProtocol {
     
     func getCurrentWeather() -> AnyPublisher<CurrentWeatherResponse, Error> {
         let endpoint = EndpointPlugin.currentWeather
-        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=b0592d72052843dffd9aab55423a04a0")!
         return networkClient.request(
             type: CurrentWeatherResponse.self,
-            url: url,
+            url: endpoint.url,
+            headers: endpoint.headers)
+    }
+    
+    func getForecastFive() -> AnyPublisher<ForecastResponse, Error> {
+        let endpoint = EndpointPlugin.forecastFive
+        return networkClient.request(
+            type: ForecastResponse.self,
+            url: endpoint.url,
             headers: endpoint.headers)
     }
 }

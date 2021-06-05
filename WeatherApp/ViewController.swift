@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         getCurrentWeather()
+        getForecastFive()
     }
     
     func getCurrentWeather() {
@@ -25,6 +26,21 @@ class ViewController: UIViewController {
         let weatherRepo = WeatherRepository(networkClient: networkClient)
         
         weatherRepo.getCurrentWeather().sink(receiveCompletion: { (completion) in
+            switch completion {
+            case let .failure(error):
+                print("Error = \(error.localizedDescription)")
+            case .finished: break
+            }
+        }) { current in
+            print("Weather = \(current)")
+        }.store(in: &subscriptions)
+    }
+    
+    func getForecastFive() {
+        let networkClient = NetworkClient()
+        let weatherRepo = WeatherRepository(networkClient: networkClient)
+        
+        weatherRepo.getForecastFive().sink(receiveCompletion: { (completion) in
             switch completion {
             case let .failure(error):
                 print("Error = \(error.localizedDescription)")

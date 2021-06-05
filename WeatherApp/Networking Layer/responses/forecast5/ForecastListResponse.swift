@@ -1,5 +1,5 @@
 //
-//  CurrentWeatherResponse.swift
+//  ForecastListResponse.swift
 //  WeatherApp
 //
 //  Created by Kevin Siundu on 05/06/2021.
@@ -7,7 +7,6 @@
 
 import Foundation
 
-struct CurrentWeatherResponse: Codable {
-    let weather: [WeatherCurrentResponse]
+struct ForecastListResponse: Codable {
     let main: MainCurrentResponse
 }
