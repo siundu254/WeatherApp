@@ -7,7 +7,9 @@
 
 import Foundation
 
+// Simple objects that can be created from our JSON
 struct CurrentWeatherResponse: Codable {
     let weather: [WeatherCurrentResponse]
     let main: MainCurrentResponse
+    let name: String
 }

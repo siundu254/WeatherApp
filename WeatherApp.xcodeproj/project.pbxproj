@@ -197,8 +197,8 @@
 		CE23C41C266BA0DA00FF8E6E /* Networking Layer */ = {
 			isa = PBXGroup;
 			children = (
+				CE407F6A266BF4A200E71449 /* protocol */,
 				CE23C422266BA25200FF8E6E /* responses */,
-				CE23C41D266BA0F600FF8E6E /* EndpointPlugin.swift */,
 				CE23C447266BA3C700FF8E6E /* NetworkClient.swift */,
 			);
 			path = "Networking Layer";
@@ -246,6 +246,14 @@
 				CE407F5C266BF02800E71449 /* ForecastListResponse.swift */,
 			);
 			path = forecast5;
+			sourceTree = "<group>";
+		};
+		CE407F6A266BF4A200E71449 /* protocol */ = {
+			isa = PBXGroup;
+			children = (
+				CE23C41D266BA0F600FF8E6E /* EndpointPlugin.swift */,
+			);
+			path = protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

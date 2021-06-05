@@ -14,6 +14,8 @@ protocol NetworkClientProtocol: class {
     func request<T>(type: T.Type, url: URL, headers: Headers) -> AnyPublisher<T, Error> where T: Decodable
 }
 
+// The NetworkClient is responsible for working directly with URLSessionTasks
+// and decoding a Codable model from the data
 final class NetworkClient: NetworkClientProtocol {
     func request<T>(type: T.Type, url: URL, headers: Headers) -> AnyPublisher<T, Error> where T : Decodable {
         // create urlRequest from custom function

@@ -7,11 +7,16 @@
 
 import Foundation
 
+
+// A handy struct that has path and queryItems properties
 struct EndpointPlugin {
     var path: String
     var queryItems: [URLQueryItem] = []
 }
 
+// By defining an extension on our struct we can easily
+// create the base URL of our REST API's
+// define specific endpoints and headers
 extension EndpointPlugin {
     var url: URL {
         var components = URLComponents()
@@ -39,13 +44,15 @@ extension EndpointPlugin {
     }
     
     static var currentWeather: Self {
-//        let defaults = UserDefaults.standard
+        let defaults = UserDefaults.standard
+        let lat = defaults.object(forKey: "latitude")
+        let lon = defaults.object(forKey: "longitude")
         
         let path = "data/2.5/weather"
         
         let queryItems = [
-            URLQueryItem(name: "lat", value: "35" ),
-            URLQueryItem(name: "lon", value: "139"),
+            URLQueryItem(name: "lat", value: "\(lat ?? "35")" ),
+            URLQueryItem(name: "lon", value: "\(lon ?? "139")"),
             URLQueryItem(name: "appid", value: "b0592d72052843dffd9aab55423a04a0")
         ]
         return EndpointPlugin(path: path, queryItems: queryItems)
