@@ -6,12 +6,18 @@
 //
 
 import UIKit
-import SwiftUI
+import Combine
 
 class ViewController: UIViewController {
+    
+    lazy var viewModel: CurrentWeatherViewModel = {
+        let viewModel = CurrentWeatherViewModel()
+        return viewModel
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // Do any additional setup after loading the view.        
     }
 }
 

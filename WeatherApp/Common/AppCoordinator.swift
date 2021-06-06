@@ -25,8 +25,6 @@ final class AppCoordinator {
     
     func start() {
         let mainView = ViewController()
-        let currentViewModel = CurrentWeatherViewModel()
-        mainView.viewModel = currentViewModel
         navigation.pushViewController(mainView, animated: true)
     }
 }

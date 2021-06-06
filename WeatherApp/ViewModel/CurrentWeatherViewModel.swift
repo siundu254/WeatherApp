@@ -8,13 +8,14 @@
 import Foundation
 import Combine
 
-class CurrentWeatherViewModel {
+class CurrentWeatherViewModel: ObservableObject {
     
-//    let didChange = PassthroughSubject<CurrentWeatherResponse, Never>()
+    let didChange = PassthroughSubject<CurrentWeatherResponse, Never>()
     var subscriptions = Set<AnyCancellable>()
     let networkClient = NetworkClient()
     
-    var state = State()
+    @Published var currentWeather: CurrentWeatherResponse?
+    @Published var forecastWeather: ForecastResponse?
     
     init() {
         // get Current Weather and Forecast data
@@ -32,7 +33,7 @@ class CurrentWeatherViewModel {
             case .finished: break
             }
         }) { current in
-            self.state.currentWeather = current
+            self.currentWeather = current
         }.store(in: &subscriptions)
     }
     
@@ -45,7 +46,7 @@ class CurrentWeatherViewModel {
             case .finished: break
             }
         }) { forecast in
-            self.state.forecastWeather = forecast
+            self.forecastWeather = forecast
         }.store(in: &subscriptions)
     }
 
@@ -62,8 +63,8 @@ class CurrentWeatherViewModel {
     }()
     
     var weatherIcon: String {
-        if self.state.currentWeather?.weather.count ?? 0 > 0 {
-            return self.state.currentWeather?.weather[0].icon ?? "sun.max.fill"
+        if self.currentWeather?.weather.count ?? 0 > 0 {
+            return self.currentWeather?.weather[0].icon ?? "sun.max.fill"
         }
         return "sun.max.fill"
     }
@@ -73,32 +74,27 @@ class CurrentWeatherViewModel {
     }
     
     var temperature: String {
-        return getTemperatureWithFormat(temp: self.state.currentWeather?.main.temp ?? 0.0)
+        return getTemperatureWithFormat(temp: self.currentWeather?.main.temp ?? 0.0)
     }
     
     var conditions: String {
-        if self.state.currentWeather?.weather.count ?? 0 > 0 {
-            return self.state.currentWeather?.weather[0].main ?? "sunny"
+        if self.currentWeather?.weather.count ?? 0 > 0 {
+            return self.currentWeather?.weather[0].main ?? "sunny"
         }
         
         return "sunny"
     }
     
     var minTemperature: String {
-        return getTemperatureWithFormat(temp: self.state.currentWeather?.main.temp_min ?? 0.0)
+        return getTemperatureWithFormat(temp: self.currentWeather?.main.temp_min ?? 0.0)
     }
     
     var maxTemperature: String {
-        return getTemperatureWithFormat(temp: self.state.currentWeather?.main.temp_max ?? 0.0)
+        return getTemperatureWithFormat(temp: self.currentWeather?.main.temp_max ?? 0.0)
     }
     
     func getDayFor(timestamp: Int) -> String {
         return dayFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(timestamp)))
-    }
-    
-    struct State {
-        var currentWeather: CurrentWeatherResponse?
-        var forecastWeather: ForecastResponse?
     }
     
 }
