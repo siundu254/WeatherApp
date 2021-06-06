@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class ViewController: UIViewController {
-    
+
     lazy var viewModel: CurrentWeatherViewModel = {
         let viewModel = CurrentWeatherViewModel()
         return viewModel
@@ -17,7 +17,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.        
+        // Do any additional setup after loading the view.
+        
+        loadModel()
+    }
+    
+    func loadModel() {
+        viewModel.$currentWeather.sink{[weak self] current in
+        }.store(in: &cancellables)
     }
 }
 
