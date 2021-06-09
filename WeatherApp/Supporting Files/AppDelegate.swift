@@ -52,7 +52,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             let defaults = UserDefaults.standard
             defaults.set(locationValue.latitude, forKey: "latitude")
             defaults.set(locationValue.longitude, forKey: "longitude")
-            manager.stopUpdatingLocation()
+            manager.stopUpdatingLocation()            
+        } else {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.requestWhenInUseAuthorization()
+            setupLocationManager()
         }
     }
     

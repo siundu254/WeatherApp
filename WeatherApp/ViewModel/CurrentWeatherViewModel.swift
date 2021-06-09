@@ -6,26 +6,33 @@
 //
 
 import Foundation
-import Combine
 
 class CurrentWeatherViewModel {
     private var state = State()
     
+    enum Kind {
+        case sunny
+        case rainy
+        case cloudy
+        case other
+    }
+    
     init(model: CurrentWeatherResponse?) {
         self.state.currentWeather = model
     }
-
-    private lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .full
-        return formatter
-    }()
     
-    private lazy var dayFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEE"
-        return formatter
-    }()
+    var kind: Kind {
+        let condition = self.state.currentWeather?.weather[0].main.lowercased()
+        if condition == "rain" {
+            return .rainy
+        } else if condition == "cloudy" || condition == "clouds" {
+            return .cloudy
+        } else if condition == "clear" {
+            return .sunny
+        } else {
+            return .other
+        }
+    }
     
     var weatherIcon: String {
         if self.state.currentWeather?.weather.count ?? 0 > 0 {
@@ -35,7 +42,8 @@ class CurrentWeatherViewModel {
     }
     
     func getTemperatureWithFormat(temp: Double) -> String {
-        return String(format: "%.0f", temp)
+        let temp = String(format: "%.0f", temp - 273.15)
+        return "\(temp)°"
     }
     
     var temperature: String {
@@ -61,13 +69,12 @@ class CurrentWeatherViewModel {
         return getTemperatureWithFormat(temp: self.state.currentWeather?.main.temp_max ?? 0.0)
     }
     
-    func getDayFor(timestamp: Int) -> String {
-        return dayFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(timestamp)))
+    var cityName: String {
+        return self.state.currentWeather?.name ?? "San Francisco, CA"
     }
     
     struct State {
         var currentWeather: CurrentWeatherResponse?
-        var forecastWeather: ForecastResponse?
     }
     
 }

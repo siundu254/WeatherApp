@@ -12,4 +12,5 @@ struct CurrentWeatherResponse: Codable {
     let weather: [WeatherCurrentResponse]
     let main: MainCurrentResponse
     let name: String
+    let dt: Int
 }

@@ -8,5 +8,7 @@
 import Foundation
 
 struct ForecastListResponse: Codable {
-    let main: MainCurrentResponse
+    let dt: Int
+    let weather: [WeatherCurrentResponse]
+    let temp: ForecastTempResponse
 }

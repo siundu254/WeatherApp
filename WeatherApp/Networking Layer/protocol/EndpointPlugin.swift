@@ -63,11 +63,11 @@ extension EndpointPlugin {
         let lat = defaults.object(forKey: "latitude")
         let lon = defaults.object(forKey: "longitude")
         
-        let path = "data/2.5/forecast"
+        let path = "data/2.5/forecast/daily"
         let queryItems = [
             URLQueryItem(name: "lat", value: "\(lat ?? "35")"),
             URLQueryItem(name: "lon", value: "\(lon ?? "139")"),
-            URLQueryItem(name: "cnt", value: "5"),
+            URLQueryItem(name: "cnt", value: "7"),
             URLQueryItem(name: "appid", value: "b0592d72052843dffd9aab55423a04a0")
         ]
         return EndpointPlugin(path: path, queryItems: queryItems)
