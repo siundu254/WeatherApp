@@ -9,8 +9,15 @@ import UIKit
 import CoreData
 import Combine
 import Firebase
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
+    @IBOutlet weak var saveToFavImage: UIButton!
+    @IBOutlet weak var viewFavoriteList: UIButton!
+    @IBOutlet weak var searchByCityField: UITextField!
+    
+    private var currentLocation: CLLocation?
+    private var locationManager: CLLocationManager!
     
     private var state = State(forecastWeather: [], forecastModel: [])
     var subscriptions = Set<AnyCancellable>()
@@ -40,17 +47,61 @@ class ViewController: UIViewController {
         Database.database().isPersistenceEnabled = true
         
         indicatorView.startAnimating()
+        searchByCityField.delegate = self
         forecastTableView.delegate = self
         forecastTableView.dataSource = self
         forecastTableView.register(UINib(nibName: "ForecastViewCell", bundle: nil), forCellReuseIdentifier: "ForecastViewCell")
 
     }
     
+    // Get user location when the App Launches
+    // save the data as variables to User Default
+    // we will use user coordinates to fetch current weather data from
+    // openweather api
+    
+    // func to provide user current location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = locations.last
+        
+        let locationValue : CLLocationCoordinate2D = manager.location!.coordinate
+        self.getCurrentWeather(lat: "\(locationValue.latitude)", lon: "\(locationValue.longitude)")
+        self.getForecastFive(lat: "\(locationValue.latitude)", lon: "\(locationValue.longitude)")
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedWhenInUse:
+            locationManager.requestLocation()
+        case .authorizedAlways:
+            locationManager.requestLocation()
+        default:
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.requestAlwaysAuthorization()
+            setupLocationManager()
+        }
+    }
+    
+    // func to print error if not able to update locations
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager.stopMonitoringSignificantLocationChanges()
+        print("Error = \(error)")
+    }
+    
+    // setup the func to handle the locationManger
+    func setupLocationManager() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.startUpdatingLocation()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if Auth.auth().currentUser == nil {
-            getCurrentWeather()
-            getForecastFive()
+            setupLocationManager()
         } else {
             let user = Auth.auth().currentUser
             // check for Data in DB
@@ -60,17 +111,16 @@ class ViewController: UIViewController {
                     self.getCurrentData()
                     self.getForecastData()
                 } else {
-                    self.getCurrentWeather()
-                    self.getForecastFive()
+                    self.setupLocationManager()
                 }
             })
         }
     }
     
-    func getCurrentWeather() {
+    func getCurrentWeather(lat: String, lon: String) {
         let weatherRepo = WeatherRepository(networkClient: networkClient)
         DispatchQueue.main.async {
-            weatherRepo.getCurrentWeather()
+            weatherRepo.getCurrentWeather(lat: lat, lon: lon)
                 .sink(
                     receiveCompletion: {(completion) in
                         switch completion {
@@ -93,29 +143,27 @@ class ViewController: UIViewController {
     }
     
     func saveDataToDB(_ userId: String, _ current: CurrentWeatherResponse) {
-        if !userId.isEmpty || userId.lowercased() != "" {
-            weatherRef = Database.database().reference()
-            
-            let data: Dictionary<String, String> = [
-                "name": current.name,
-                "dt": "\(current.dt)",
-                "temp": "\(current.main.temp ?? 0.0)",
-                "min_temp": "\(current.main.temp_min ?? 0.0)",
-                "max_temp": "\(current.main.temp_max ?? 0.0)",
-                "icon": "\(current.weather[0].icon)",
-                "main": "\(current.weather[0].main)"
-            ]
-            weatherRef.child("users").child(userId).child("current").setValue(data)
-            self.getCurrentData()
-        } else {
-            print("uid is empty")
-        }
+        weatherRef = Database.database().reference()
+        
+        let data: [String: String] = [
+            "name": current.name,
+            "dt": "\(current.dt)",
+            "temp": "\(current.main.temp ?? 0.0)",
+            "min_temp": "\(current.main.temp_min ?? 0.0)",
+            "max_temp": "\(current.main.temp_max ?? 0.0)",
+            "icon": "\(current.weather[0].icon)",
+            "main": "\(current.weather[0].main)",
+            "lat": "\(current.coord.lat ?? 0.0)",
+            "lon": "\(current.coord.lon ?? 0.0)"
+        ]
+        weatherRef.child("users").child(userId).child("current").setValue(data)
+        self.getCurrentData()
     }
     
-    func getForecastFive() {
+    func getForecastFive(lat: String, lon: String) {
         let weatherRepo = WeatherRepository(networkClient: networkClient)
         DispatchQueue.main.async {
-            weatherRepo.getForecastFive()
+            weatherRepo.getForecastFive(lat: lat, lon: lon)
                 .sink(
                     receiveCompletion: {(completion) in
                         switch completion {
@@ -140,7 +188,7 @@ class ViewController: UIViewController {
             for cast in forecast.list.indices {
                 let forecast: [String : Any] = [
                     "dt": "\(forecast.list[cast].dt)",
-                    "day": "\(forecast.list[cast].temp.day)",
+                    "day": "\(forecast.list[cast].temp)",
                     "icon": forecast.list[cast].weather[0].icon,
                     "main": forecast.list[cast].weather[0].main
                 ]
@@ -249,6 +297,90 @@ class ViewController: UIViewController {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchByCity()
+        return true
+    }
+    
+    func searchByCity() {
+        guard let city = searchByCityField.text, !city.isEmpty else { return }
+        let cityQuery = city.replacingOccurrences(of: "", with: "%20")
+        getCurrentWeatherByCity(cityQuery)
+        getForecastWeatherByCity(cityQuery)
+    }
+    
+    func getCurrentWeatherByCity(_ city: String) {
+        self.indicatorView.startAnimating()
+        let weatherRepo = WeatherRepository(networkClient: networkClient)
+        weatherRepo.getCurrentWeather(city: city)
+            .sink(
+                receiveCompletion: {(completion) in
+                    switch completion {
+                    case let .failure(error):
+                        print("Error = \(error.localizedDescription)")
+                    case .finished: break
+                    }
+                },
+                receiveValue: {(current) in
+                    self.state.currentWeather = current
+                    let userId = Auth.auth().currentUser?.uid
+                    
+                    self.saveDataToDB(userId ?? "", current)
+                })
+            .store(in: &self.subscriptions)
+    }
+    
+    func getForecastWeatherByCity(_ city: String) {
+        let weatherRepo = WeatherRepository(networkClient: networkClient)
+        weatherRepo.getForecastFive(city: city)
+            .sink(
+                receiveCompletion: {(completion) in
+                    switch completion {
+                    case let .failure(error):
+                        print("Error = \(error.localizedDescription)")
+                    case .finished: break
+                    }
+                },
+                receiveValue: {(forecast) in
+                    self.saveForecastData(forecast)
+                })
+            .store(in: &self.subscriptions)
+    }
+    
+    @IBAction func viewFavorite(_ sender: Any) {
+    }
+    
+    @IBAction func saveToFavorite(_ sender: Any) {
+        let weatherRef = Database.database().reference()
+        let userId = Auth.auth().currentUser?.uid ?? ""
+        
+        weatherRef.child("users").child(userId).child("favorites").child(self.state.currentWeather?.name ?? "San Francisco")
+        weatherRef.observe(.value, with: { snapshot in
+            if snapshot.exists() {
+                // favorite exists
+                // hide favorite icon for this data
+                self.saveToFavImage.isHidden = true
+            } else {
+                // save Data favorite does not exist
+                let data: [String: String] = [
+                    "name": self.state.currentWeather?.name ?? "",
+                    "dt": "\(self.state.currentWeather?.dt ?? 0)",
+                    "temp": "\(self.state.currentWeather?.main.temp ?? 0.0)",
+                    "min_temp": "\(self.state.currentWeather?.main.temp_min ?? 0.0)",
+                    "max_temp": "\(self.state.currentWeather?.main.temp_max ?? 0.0)",
+                    "icon": "\(self.state.currentWeather?.weather[0].icon ?? "")",
+                    "main": "\(self.state.currentWeather?.weather[0].main ?? "")",
+                    "lat": "\(self.state.currentWeather?.coord.lat ?? 0.0)",
+                    "lon": "\(self.state.currentWeather?.coord.lon ?? 0.0)"
+                ]
+                weatherRef.child("users").child(userId).child("favorites").child(self.state.currentWeather?.name ?? "San Francisco").setValue(data)
+                
+                // favorite Data Saved
+                self.saveToFavImage.isHidden = true
+            }
+        })
+    }
+    
     struct State {
         var currentWeather: CurrentWeatherResponse?
         var forecastWeather: [ForecastListResponse]
@@ -258,7 +390,7 @@ class ViewController: UIViewController {
 }
 
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.state.forecastModel.count
     }

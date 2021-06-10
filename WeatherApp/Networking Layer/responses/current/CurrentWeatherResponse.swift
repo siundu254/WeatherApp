@@ -13,4 +13,5 @@ struct CurrentWeatherResponse: Codable {
     let main: MainCurrentResponse
     let name: String
     let dt: Int
+    let coord: CoordCurrentResponse
 }

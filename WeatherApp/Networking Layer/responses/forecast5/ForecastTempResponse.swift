@@ -8,5 +8,5 @@
 import Foundation
 
 struct ForecastTempResponse: Codable {
-    let day: Double?
+    let day: Double
 }
