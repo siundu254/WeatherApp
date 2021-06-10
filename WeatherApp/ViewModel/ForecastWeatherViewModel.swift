@@ -18,15 +18,14 @@ class ForecastWeatherViewModel {
         case other
     }
     
-    init(forecast: ForecastListResponse?) {
+    init(forecast: ForecastWeatherModel?) {
         self.state.forecastWeather = forecast
     }
     
     var temperature: String {
-        if self.state.forecastWeather?.temp.day ?? 0.0 > 0 {
-            return getTemperatureWithFormat(temp: self.state.forecastWeather?.temp.day ?? 0.0)
-        }
-        return "0.0"
+        let temp = Double(self.state.forecastWeather?.day ?? "0") ?? 0.0
+        let formattedTemp = getTemperatureWithFormat(temp: temp)
+        return "\(formattedTemp)"
     }
     
     private lazy var dateFormatter: DateFormatter = {
@@ -51,15 +50,16 @@ class ForecastWeatherViewModel {
     }
     
     var getDayToday: String {
-        return getDayFor(timestamp: self.state.forecastWeather?.dt ?? 0)
+        let timestamp = self.state.forecastWeather?.dt ?? "0"
+        return getDayFor(timestamp: Int(timestamp) ?? 0)
     }
     
     var weatherTypeImage: String {        
-        return self.state.forecastWeather?.weather[0].icon ?? "09d"
+        return self.state.forecastWeather?.icon ?? "09d"
     }
     
     var kind: Kind {
-        let condition = self.state.forecastWeather?.weather[0].main.lowercased()
+        let condition = self.state.forecastWeather?.main.lowercased()
         if condition == "rain" {
             return .rainy
         } else if condition == "cloudy" || condition == "clouds" {
@@ -72,6 +72,6 @@ class ForecastWeatherViewModel {
     }
     
     struct State {
-        var forecastWeather: ForecastListResponse?
+        var forecastWeather: ForecastWeatherModel?
     }
 }

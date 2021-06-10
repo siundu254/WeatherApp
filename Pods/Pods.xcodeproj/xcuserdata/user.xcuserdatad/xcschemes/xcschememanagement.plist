@@ -4,7 +4,42 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-WeatherApp-WeatherAppUITests.xcscheme</key>
+		<key>Firebase.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FirebaseAuth.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FirebaseCore.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FirebaseCoreDiagnostics.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FirebaseDatabase.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GTMSessionFetcher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GoogleDataTransport.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GoogleUtilities.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -14,7 +49,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-WeatherAppTests.xcscheme</key>
+		<key>PromisesObjC.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>leveldb-library.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

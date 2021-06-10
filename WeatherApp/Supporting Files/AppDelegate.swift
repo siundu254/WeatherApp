@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
         setupLocationManager()
         coordinator.start()
         return true
@@ -56,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         } else {
             locationManager = CLLocationManager()
             locationManager.delegate = self
-            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
             setupLocationManager()
         }
     }

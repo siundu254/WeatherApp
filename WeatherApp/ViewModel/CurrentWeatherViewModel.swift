@@ -17,13 +17,13 @@ class CurrentWeatherViewModel {
         case other
     }
     
-    init(model: CurrentWeatherResponse?) {
+    init(model: CurrentWeatherModel?) {
         self.state.currentWeather = model
     }
     
     var kind: Kind {
-        let condition = self.state.currentWeather?.weather[0].main.lowercased()
-        if condition == "rain" {
+        let condition = self.state.currentWeather?.main.lowercased()
+        if condition == "rain" || condition == "rainny" {
             return .rainy
         } else if condition == "cloudy" || condition == "clouds" {
             return .cloudy
@@ -35,10 +35,7 @@ class CurrentWeatherViewModel {
     }
     
     var weatherIcon: String {
-        if self.state.currentWeather?.weather.count ?? 0 > 0 {
-            return self.state.currentWeather?.weather[0].icon ?? "sun.max.fill"
-        }
-        return "sun.max.fill"
+        return self.state.currentWeather?.icon ?? "sun.max.fill"
     }
     
     func getTemperatureWithFormat(temp: Double) -> String {
@@ -47,26 +44,25 @@ class CurrentWeatherViewModel {
     }
     
     var temperature: String {
-        if self.state.currentWeather?.main.temp ?? 0.0 > 0 {
-            return getTemperatureWithFormat(temp: self.state.currentWeather?.main.temp ?? 0.0)
-        }
-        return "0.0"
+        let temp = Double(self.state.currentWeather?.temp ?? "0") ?? 0.0
+        let formattedTemp = getTemperatureWithFormat(temp: temp)
+        return "\(formattedTemp)"
     }
     
     var conditions: String {
-        if self.state.currentWeather?.weather.count ?? 0 > 0 {
-            return self.state.currentWeather?.weather[0].main ?? "sunny"
-        }
-        
-        return "sunny"
+        return self.state.currentWeather?.main ?? "sunny"
     }
     
     var minTemperature: String {
-        return getTemperatureWithFormat(temp: self.state.currentWeather?.main.temp_min ?? 0.0)
+        let minTemp = Double(self.state.currentWeather?.min_temp ?? "0") ?? 0.0
+        let formattedTemp = getTemperatureWithFormat(temp: minTemp)
+        return "\(formattedTemp)"
     }
     
     var maxTemperature: String {
-        return getTemperatureWithFormat(temp: self.state.currentWeather?.main.temp_max ?? 0.0)
+        let maxTemp = Double(self.state.currentWeather?.max_temp ?? "0") ?? 0.0
+        let formattedTemp = getTemperatureWithFormat(temp: maxTemp)
+        return "\(formattedTemp)"
     }
     
     var cityName: String {
@@ -74,7 +70,7 @@ class CurrentWeatherViewModel {
     }
     
     struct State {
-        var currentWeather: CurrentWeatherResponse?
+        var currentWeather: CurrentWeatherModel?
     }
     
 }

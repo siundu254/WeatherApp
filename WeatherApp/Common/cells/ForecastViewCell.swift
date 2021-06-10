@@ -25,7 +25,7 @@ class ForecastViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(with model: ForecastListResponse) {
+    func configure(with model: ForecastWeatherModel) {
         let viewModel = ForecastWeatherViewModel(forecast: model)
         
         labelTemp.text = viewModel.temperature
