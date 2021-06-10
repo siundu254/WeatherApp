@@ -60,7 +60,7 @@ class FavoritesListViewController: UIViewController {
     }
     
     @IBAction func backAction(_ sender: Any) {
-        backActionTapped()
+        [self .dismiss(animated: true, completion: nil)]
     }
     
     struct State {

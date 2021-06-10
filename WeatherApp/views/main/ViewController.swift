@@ -349,7 +349,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func viewFavorite(_ sender: Any) {
-        goToFavoriteList()
+        let storyboard = UIStoryboard(name: "FavoritesListStoryboard", bundle: nil)
+        let favoritesVC = storyboard.instantiateViewController(withIdentifier: "FavoritesListViewController") as! FavoritesListViewController
+        [self.present(favoritesVC, animated: true, completion: nil)]
     }
     
     @IBAction func saveToFavorite(_ sender: Any) {
