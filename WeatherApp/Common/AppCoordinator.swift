@@ -25,7 +25,18 @@ final class AppCoordinator {
     
     func start() {
         let mainView = ViewController()
+        mainView.goToFavoriteList = goToFavorite
         navigation.pushViewController(mainView, animated: true)
+    }
+    
+    func goToFavorite() {
+        let favoritesView = FavoritesListViewController()
+        favoritesView.backActionTapped = backAction
+        navigation.pushViewController(favoritesView, animated: true)
+    }
+    
+    func backAction() {
+        navigation.popViewController(animated: true)
     }
 }
 

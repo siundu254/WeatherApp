@@ -40,6 +40,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var stackCurrentView: UIView!
     @IBOutlet weak var tempStackView: UIStackView!
     var weatherRef: DatabaseReference!
+    var goToFavoriteList: () -> Void = { print("goToFavoriteList is not overriden") }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +52,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         forecastTableView.delegate = self
         forecastTableView.dataSource = self
         forecastTableView.register(UINib(nibName: "ForecastViewCell", bundle: nil), forCellReuseIdentifier: "ForecastViewCell")
-
     }
     
     // Get user location when the App Launches
@@ -299,6 +299,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchByCity()
+        searchByCityField.resignFirstResponder()
         return true
     }
     
@@ -348,6 +349,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func viewFavorite(_ sender: Any) {
+        goToFavoriteList()
     }
     
     @IBAction func saveToFavorite(_ sender: Any) {
@@ -360,6 +362,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 // favorite exists
                 // hide favorite icon for this data
                 self.saveToFavImage.isHidden = true
+                print("we are here")
             } else {
                 // save Data favorite does not exist
                 let data: [String: String] = [
@@ -377,6 +380,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 
                 // favorite Data Saved
                 self.saveToFavImage.isHidden = true
+                print("no Data Found")
             }
         })
     }

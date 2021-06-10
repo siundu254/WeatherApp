@@ -65,7 +65,7 @@
                                         </constraints>
                                         <state key="normal" image="star.fill" catalog="system"/>
                                         <connections>
-                                            <action selector="saveToFavorite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7HM-4S-xZP"/>
+                                            <action selector="viewFavorite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hJE-kW-6DW"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEy-2j-xtK">
@@ -76,7 +76,7 @@
                                         </constraints>
                                         <state key="normal" image="plus" catalog="system"/>
                                         <connections>
-                                            <action selector="viewFavorite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dn4-3j-YoM"/>
+                                            <action selector="saveToFavorite:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gtN-Pr-sUw"/>
                                         </connections>
                                     </button>
                                 </subviews>
