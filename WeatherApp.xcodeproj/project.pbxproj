@@ -175,13 +175,13 @@
 		CE23C3DE266B9F3500FF8E6E /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				CE7A8B3326720FE0006E2482 /* GoogleService-Info.plist */,
 				CED7BAC6266D5098000259AD /* views */,
 				CE4A864A266D20B800811ACA /* ViewModel */,
 				CE23C44C266BA4B900FF8E6E /* Common */,
 				CE23C41C266BA0DA00FF8E6E /* Networking Layer */,
 				CE23C41B266BA0B300FF8E6E /* Supporting Files */,
 				CE23C3ED266B9F3F00FF8E6E /* Info.plist */,
+				CE7A8B3326720FE0006E2482 /* GoogleService-Info.plist */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";

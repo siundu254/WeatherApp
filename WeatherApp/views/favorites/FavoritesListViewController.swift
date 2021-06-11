@@ -19,8 +19,6 @@ class FavoritesListViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-//        Database.database().isPersistenceEnabled = true
-        
         favoriteListTable.delegate = self
         favoriteListTable.dataSource = self
         
@@ -29,7 +27,6 @@ class FavoritesListViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         getfavoritesList()
     }
     
@@ -39,21 +36,19 @@ class FavoritesListViewController: UIViewController {
         weatherRef = Database.database().reference()
         
         weatherRef.child("users").child(userId).child("favorites").observe(.value, with: { snapshot in
-            if snapshot.exists() {
-                for child in snapshot.children {
-                    let value = child as! DataSnapshot
-                    let valueDict = value.value as! [String: Any]
-                    
-                    self.state.favoritesList.append(CurrentWeatherModel(
-                        dt: valueDict["dt"] as? String ?? "",
-                        icon: valueDict["icon"] as? String ?? "",
-                        main: valueDict["main"] as? String ?? "",
-                        max_temp: valueDict["max_temp"] as? String ?? "",
-                        min_temp: valueDict["min_temp"] as? String ?? "",
-                        name: valueDict["name"] as? String ?? "",
-                        temp: valueDict["temp"] as? String ?? ""))
-                    self.favoriteListTable.reloadData()
-                }
+            for child in snapshot.children {
+                let value = child as! DataSnapshot
+                let valueDict = value.value as! [String: Any]
+                
+                self.state.favoritesList.append(CurrentWeatherModel(
+                    dt: valueDict["dt"] as? String ?? "",
+                    icon: valueDict["icon"] as? String ?? "",
+                    main: valueDict["main"] as? String ?? "",
+                    max_temp: valueDict["max_temp"] as? String ?? "",
+                    min_temp: valueDict["min_temp"] as? String ?? "",
+                    name: valueDict["name"] as? String ?? "",
+                    temp: valueDict["temp"] as? String ?? ""))
+                self.favoriteListTable.reloadData()
             }
         })
         

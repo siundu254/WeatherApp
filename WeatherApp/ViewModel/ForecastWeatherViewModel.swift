@@ -22,6 +22,7 @@ class ForecastWeatherViewModel {
         self.state.forecastWeather = forecast
     }
     
+    // returns the temperature in degree celcius
     var temperature: String {
         let temp = Double(self.state.forecastWeather?.day ?? "0") ?? 0.0
         let formattedTemp = getTemperatureWithFormat(temp: temp)

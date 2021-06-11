@@ -186,7 +186,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             for cast in forecast.list.indices {
                 let forecast: [String : Any] = [
                     "dt": "\(forecast.list[cast].dt)",
-                    "day": "\(forecast.list[cast].temp)",
+                    "day": "\(forecast.list[cast].temp.day ?? 0.0)",
                     "icon": forecast.list[cast].weather[0].icon,
                     "main": forecast.list[cast].weather[0].main
                 ]
