@@ -31,7 +31,7 @@ class FavoritesViewcellTableViewCell: UITableViewCell {
         
         let urlString = NSURL(string: "https://openweathermap.org/img/w/\(viewModel.weatherIcon).png")
         let urlData = NSData(contentsOf: urlString! as URL)
-        
+
         if urlData != nil {
             favoritesImage.image = UIImage(data: urlData! as Data)
         }

@@ -92,8 +92,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="image" destination="Z0P-g9-J0n" id="icz-kY-kHD"/>
-                <outlet property="temp" destination="nzm-Ig-Avh" id="IKD-jr-3uK"/>
+                <outlet property="favoritesImage" destination="Z0P-g9-J0n" id="pq6-zn-v7p"/>
+                <outlet property="favoritesName" destination="26d-f0-nEU" id="ZYl-5B-L57"/>
+                <outlet property="favoritesTemp" destination="nzm-Ig-Avh" id="rva-VY-KcE"/>
             </connections>
             <point key="canvasLocation" x="152.89855072463769" y="82.03125"/>
         </tableViewCell>

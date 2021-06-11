@@ -27,7 +27,7 @@
                                     <action selector="backAction:" destination="T99-oF-a9E" eventType="touchUpInside" id="tbm-cJ-7qE"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K5o-iO-g69">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K5o-iO-g69">
                                 <rect key="frame" x="0.0" y="74" width="414" height="788"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>

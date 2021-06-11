@@ -14,13 +14,12 @@ class FavoritesListViewController: UIViewController {
     var backActionTapped: () -> Void = { print("backActionTapped is not overriden") }
     
     private var state = State(favoritesList: [])
-    var weatherRef: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        Database.database().isPersistenceEnabled = true
+//        Database.database().isPersistenceEnabled = true
         
         favoriteListTable.delegate = self
         favoriteListTable.dataSource = self
@@ -35,12 +34,12 @@ class FavoritesListViewController: UIViewController {
     }
     
     func getfavoritesList() {
+        var weatherRef: DatabaseReference!        
         let userId = Auth.auth().currentUser?.uid ?? ""
         weatherRef = Database.database().reference()
         
         weatherRef.child("users").child(userId).child("favorites").observe(.value, with: { snapshot in
             if snapshot.exists() {
-                
                 for child in snapshot.children {
                     let value = child as! DataSnapshot
                     let valueDict = value.value as! [String: Any]
@@ -57,6 +56,8 @@ class FavoritesListViewController: UIViewController {
                 }
             }
         })
+        
+        weatherRef.keepSynced(true)
     }
     
     @IBAction func backAction(_ sender: Any) {

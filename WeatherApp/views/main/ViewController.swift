@@ -44,9 +44,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        Database.database().isPersistenceEnabled = true
-        
+        // Do any additional setup after loading the view.        
         indicatorView.startAnimating()
         searchByCityField.delegate = self
         forecastTableView.delegate = self
@@ -360,13 +358,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         weatherRef.child("users").child(userId).child("favorites").child(self.state.currentWeather?.name ?? "San Francisco")
         weatherRef.observe(.value, with: { snapshot in
-            if snapshot.exists() {
-                // favorite exists
-                // hide favorite icon for this data
-                self.saveToFavImage.isHidden = true
-                print("we are here")
-            } else {
-                // save Data favorite does not exist
+            // save Data favorite does not exist
+            if self.state.currentWeather != nil && !(self.state.currentWeather?.name.isEmpty)! {
                 let data: [String: String] = [
                     "name": self.state.currentWeather?.name ?? "",
                     "dt": "\(self.state.currentWeather?.dt ?? 0)",
@@ -382,7 +375,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 
                 // favorite Data Saved
                 self.saveToFavImage.isHidden = true
-                print("no Data Found")
+            } else {
+                self.getCurrentData()
             }
         })
     }
