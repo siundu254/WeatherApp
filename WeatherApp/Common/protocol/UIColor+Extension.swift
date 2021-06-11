@@ -14,7 +14,7 @@ extension UIColor {
     }
     
     static var seaSunny: UIColor {
-        return UIColor(red: 71/255, green: 171/255, blue: 47/255, alpha: 1.0)
+        return UIColor(red: 37/255, green: 150/255, blue: 190/255, alpha: 1.0)
     }
     
     static var seaRainny: UIColor {
