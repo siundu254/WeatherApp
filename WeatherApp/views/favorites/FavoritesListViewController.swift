@@ -47,7 +47,9 @@ class FavoritesListViewController: UIViewController {
                     max_temp: valueDict["max_temp"] as? String ?? "",
                     min_temp: valueDict["min_temp"] as? String ?? "",
                     name: valueDict["name"] as? String ?? "",
-                    temp: valueDict["temp"] as? String ?? ""))
+                    temp: valueDict["temp"] as? String ?? "",
+                    lat: valueDict["lat"] as? String ?? "",
+                    lon: valueDict["lon"] as? String ?? ""))
                 self.favoriteListTable.reloadData()
             }
         })
@@ -74,5 +76,17 @@ extension FavoritesListViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoritesViewcellTableViewCell", for: indexPath) as! FavoritesViewcellTableViewCell
         cell.configure(with: self.state.favoritesList[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let favorite = self.state.favoritesList[indexPath.row]
+        let storyboard = UIStoryboard(name: "DetailsViewStoryboard", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+        
+        vc.latitude = Double(favorite.lat ?? "0")
+        vc.longtitude = Double(favorite.lon ?? "0")
+        vc.name = favorite.name
+
+        [self.present(vc, animated: true, completion: nil)]
     }
 }

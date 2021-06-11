@@ -15,8 +15,10 @@ struct CurrentWeatherModel {
     let min_temp: String
     let name: String
     let temp: String
+    let lat: String?
+    let lon: String?
     
-    init(dt: String, icon: String, main: String, max_temp: String, min_temp: String, name: String, temp: String) {
+    init(dt: String, icon: String, main: String, max_temp: String, min_temp: String, name: String, temp: String, lat: String? = nil, lon: String? = nil) {
         self.dt = dt
         self.icon = icon
         self.main = main
@@ -24,5 +26,7 @@ struct CurrentWeatherModel {
         self.min_temp = min_temp
         self.name = name
         self.temp = temp
+        self.lat = lat
+        self.lon = lon
     }
 }
