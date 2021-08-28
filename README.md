@@ -58,6 +58,6 @@ This section contains an overview of this topic — please refer here for more c
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@linkedIn](https://www.linkedin.com/in/kevin-siundu-506b2a162/) - siundu344@gmail.com
+KEVIN SIUNDU - [@linkedIn](https://www.linkedin.com/in/kevin-siundu-506b2a162/) - siundu344@gmail.com
 
 Project Link: [https://github.com/rahmakevo/WeatherApp](https://github.com/rahmakevo/WeatherApp)
